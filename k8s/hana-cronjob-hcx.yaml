@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hana-autostart-hcx
+  namespace: hcx
+spec:
+  schedule: "0 */3 * * *"  # every 3 hours
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hana-autostart-hcx
+            image: tlodevacr.azurecr.io/hana-hcx-autostart
+            imagePullPolicy: Always
+            env:
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: hana-service-key
+                  key: client_id
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: hana-service-key
+                  key: client_secret
+            - name: TOKEN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: hana-service-key
+                  key: token_url
+            - name: SERVICE_MANAGER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: hana-service-key
+                  key: service_manager_url
+            - name: INSTANCE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: hana-service-key
+                  key: instance_name
+          restartPolicy: OnFailure
