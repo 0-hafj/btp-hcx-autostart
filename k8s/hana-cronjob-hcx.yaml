@@ -5,6 +5,8 @@ metadata:
   namespace: hcx
 spec:
   schedule: "0 */3 * * *"  # every 3 hours
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:

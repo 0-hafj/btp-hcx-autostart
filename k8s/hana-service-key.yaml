@@ -4,11 +4,10 @@ type: Opaque
 metadata:
   name: hana-service-key
   namespace: <namespace>
-## remember base64
 data:
-  client_id: 
-  client_secret: 
-  instance_name: 
-  service_manager_url: 
-  token_url: 
+  client_id: base64-encoded-string
+  client_secret: base64-encoded-string
+  instance_name: base64-encoded-string
+  service_manager_url: base64-encoded-string
+  token_url: base64-encoded-string
 
