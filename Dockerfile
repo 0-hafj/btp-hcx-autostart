@@ -11,4 +11,4 @@ COPY hana_autostart.py .
 RUN pip install --no-cache-dir requests
 
 # Set default command
-CMD ["python", "hana_autostart.py"]
+ENTRYPOINT ["python", "hana_autostart.py"]
